@@ -4,6 +4,8 @@
 		"day01.h": "c",
 		"base.h": "c",
 		"fcntl.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"libft.h": "c",
+		"list": "c"
 	}
 }

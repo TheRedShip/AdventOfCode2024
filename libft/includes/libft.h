@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycontre <ycontre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 13:16:25 by rgramati          #+#    #+#             */
-/*   Updated: 2024/05/24 16:32:23 by ycontre          ###   ########.fr       */
+/*   Updated: 2024/12/01 16:48:31 by TheRed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ int		ft_tab_len(char **tab);
 char	**ft_strtab(char *str);
 void	ft_strapp(char ***tab, char *str);
 void	ft_strtabjoin(char ***tab, char **next);
+void	ft_swap(int *a, int *b);
 
 /**
  * @brief		Returns a lowercase copy of a string.
@@ -183,8 +184,6 @@ char	*ft_strlow(char *str);
 char	*ft_strupp(char *str);
 
 void	ft_swap_strs(char **a, char **b);
-
-void	ft_swap(float *a, float *b, int condition);
 
 void	ft_sort_strs_tab(char **tab, int size);
 

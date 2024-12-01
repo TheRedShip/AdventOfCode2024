@@ -13,7 +13,7 @@
 #ifndef DAY01_H
 # define DAY01_H
 
-# include "libft.h"
+# include "base.h"
 
 long int	resolve_part1(char *input, char **split);
 long int	resolve_part2(char *input, char **split);

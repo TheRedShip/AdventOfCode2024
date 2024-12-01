@@ -65,11 +65,11 @@ $(LFT):
 	@make -j -C $(LIBFT_DIR)
 
 $(MAIN_OBJ): $(MAIN_SRC)
-	@printf "\n $(LINE_CLR)$(BWHITE) Compiling $(BGREEN)$<...$(RESET)\n"
+	@printf "$(LINE_CLR)$(BWHITE) Compiling $(BGREEN)$<...$(RESET)\n"
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
-	@printf "\n $(LINE_CLR)$(BWHITE) Compiling $(BGREEN)$<...$(RESET)\n"
+	@printf "$(LINE_CLR)$(BWHITE) Compiling $(BGREEN)$<...$(RESET)\n"
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJS_DIR):
