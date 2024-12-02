@@ -81,6 +81,7 @@ long int	resolve_part1(char *input, char **split)
 		return (0);
 
 	fill_tab(split, tab_left, tab_right);
+	
 	sort_tab(tab_left, len);
 	sort_tab(tab_right, len);
 
