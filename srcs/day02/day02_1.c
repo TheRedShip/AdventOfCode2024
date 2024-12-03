@@ -40,7 +40,7 @@ static int  *create_tab(char *str)
     return (tab);
 }
 
-long int    is_safe(int *tab)
+static long int    is_safe(int *tab)
 {
     int i;
     int dist;
