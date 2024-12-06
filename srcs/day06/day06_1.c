@@ -20,7 +20,7 @@ typedef enum s_dir
 	LEFT = 3
 }			t_dir;
 
-void	get_guard_pos(char **split, int *pos)
+static void	get_guard_pos(char **split, int *pos)
 {
 	int	y;
 	int	x;
@@ -59,7 +59,7 @@ void	get_guard_pos(char **split, int *pos)
 	}
 }
 
-void		add_pos_dir(int *pos)
+static void		add_pos_dir(int *pos)
 {
 	if (pos[2] == UP)
 		pos[1] -= 1;
