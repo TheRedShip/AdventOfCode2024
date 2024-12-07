@@ -6,7 +6,7 @@
 /*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:17:29 by TheRed            #+#    #+#             */
-/*   Updated: 2024/12/05 23:19:49 by TheRed           ###   ########.fr       */
+/*   Updated: 2024/12/06 23:22:22 by TheRed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,7 @@ long int	resolve_part1(char *input, char **split)
 		{
 			if (split[i][j] == 'X')
 				result += 1;
-			printf("%c ", split[i][j]);
 		}
-		printf("\n");
 	}
 	return (result);
 }
