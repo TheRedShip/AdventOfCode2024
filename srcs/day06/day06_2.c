@@ -6,7 +6,7 @@
 /*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 23:17:39 by TheRed            #+#    #+#             */
-/*   Updated: 2024/12/07 01:10:01 by TheRed           ###   ########.fr       */
+/*   Updated: 2024/12/07 01:13:43 by TheRed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ static int	is_infinite_path(char **split, int x, int y, int *pos)
 		return (0);
 	}
 
-	
 	split[y][x] = '#';
 	while (split[pos[1]][pos[0]] != pos[2])
 	{
