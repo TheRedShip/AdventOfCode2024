@@ -112,9 +112,6 @@ long int	resolve_part1(char *input, char **split)
 	{
 	
 		tab = parse_tab(*split);
-		for (long int i = 0; tab[i]; i++)
-			printf("%ld ", tab[i]);
-		printf("\n");
 		result += solve_tab(tab);
 		split++;
 	}
