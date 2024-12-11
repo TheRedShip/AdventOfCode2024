@@ -1,5 +1,14 @@
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   day11_1.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/11 22:51:55 by TheRed            #+#    #+#             */
+/*   Updated: 2024/12/11 23:33:57 by TheRed           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "base.h"
 
@@ -94,7 +103,15 @@ long int		resolve_part1(char *input, char **split)
 	tab = parse_input(input);
 	for (int i = 0; i < 25; i++)
 		tab = blink(&tab);
-
+	
+	// t_list *tmp = tab;
+	// while (tmp)
+	// {
+	// 	printf("%ld ", *(long int *)tmp->content);
+	// 	tmp = tmp->next;
+	// }
+	// printf("\n");
+	
 	result = ft_lstsize(tab);
 
 	ft_lstclear(&tab, free);
