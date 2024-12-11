@@ -6,13 +6,13 @@
 /*   By: TheRed <TheRed@students.42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 22:52:06 by TheRed            #+#    #+#             */
-/*   Updated: 2024/12/11 23:36:19 by TheRed           ###   ########.fr       */
+/*   Updated: 2024/12/11 23:41:03 by TheRed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "base.h"
 
-#define MAP_MAX 1000
+#define MAP_MAX 10000
 #define DEP_MAX 75
 
 static long int	*parse_input(char *input)
