@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 CC          := clang
-CFLAGS      := -g -Wextra -Werror -Wall
+CFLAGS      := -g -pg -Wextra -Werror -Wall
 
 
 LIBFT_DIR   := ./libft
