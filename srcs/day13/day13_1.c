@@ -14,7 +14,7 @@ typedef struct	s_input
 	t_pos		end;
 }				t_input;
 
-t_input			*parse_input(char **split)
+static t_input		*parse_input(char **split)
 {
 	t_input		*input;
 	long int			y;
@@ -92,11 +92,9 @@ long int		resolve_part1(char *_, char **split)
 	for (long int i = 0; input[i].end.x != -1 && input[i].end.y != -1; i++ )
 	{
 		long int cost = find_min_cost(input[i]);
-		printf("%ld\n", cost);
 		if (cost > 0)
 			result += cost;
 	}
 
-	printf("%ld\n", result);
 	return (result);
 }
