@@ -8,6 +8,12 @@
 		"libft.h": "c",
 		"list": "c",
 		"chrono": "c",
-		"xlocale": "c"
+		"xlocale": "c",
+		"algorithm": "c",
+		"iterator": "c",
+		"xhash": "c",
+		"xmemory": "c",
+		"xtree": "c",
+		"xutility": "c"
 	}
 }

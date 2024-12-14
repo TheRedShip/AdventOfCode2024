@@ -36,7 +36,7 @@ static t_bots	*parse_bots(char **split)
 	return (bots);
 }
 
-void			elapse(t_bots *bots, int bots_len, t_pos area_size)
+static void		elapse(t_bots *bots, int bots_len, t_pos area_size)
 {
 	int		i;
 	t_pos	new_pos;
@@ -62,7 +62,7 @@ void			elapse(t_bots *bots, int bots_len, t_pos area_size)
 	}
 }
 
-static void		show_bot(t_bots *bots, int bots_len, t_pos area_size)
+void		show_bot(t_bots *bots, int bots_len, t_pos area_size)
 {
 	for (int y = 0; y < area_size.y; y++)
 	{
@@ -123,12 +123,12 @@ long int		resolve_part1(char *input, char **split)
 
 	bots = parse_bots(split);
 
-	show_bot(bots, ft_tab_len(split), area_size);
+	// show_bot(bots, ft_tab_len(split), area_size);
 
 	for (int i = 0; i < 100; i++)
 		elapse(bots, ft_tab_len(split), area_size);
 
-	show_bot(bots, ft_tab_len(split), area_size);
+	// show_bot(bots, ft_tab_len(split), area_size);
 
 	result = quadrant(bots, ft_tab_len(split), area_size);
 
