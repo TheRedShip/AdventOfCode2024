@@ -84,61 +84,9 @@ int				get_new_cost(t_bot bot, t_dir new_dir)
 	return (1001);
 }
 
-long int		backtrack(char **split, long int **hash, t_bot bot, t_pos end)
+long int		backtrack(char **split, long int ***hash, t_bot bot, t_pos end)
 {
-	t_dir	dirs[5];
-	int		cost;
-	int		min_cost;
-	int		current_cost;
-	t_dir	current_dir;
-
-	if (bot.pos.x == end.x && bot.pos.y == end.y)
-		return (bot.cost);
-
-	split[bot.pos.y][bot.pos.x] = '#';
-
-	min_cost = -1;
-
-	memset(dirs, END, sizeof(dirs));
-	set_next_dir(split, bot, dirs);
-
-	if ((dirs[0] < 0 || dirs[0] >= 4))
-	{
-		split[bot.pos.y][bot.pos.x] = '.';
-		return (-1);
-	}
-	for (int j = 0; (dirs[j] >= 0 && dirs[j] < 4) && j < 4; j++)
-	{
-		if (dirs[j] < 0 || dirs[j] >= 4)
-			break ;
-
-		current_cost = get_new_cost(bot, dirs[j]);
-		bot.dir = get_dir(dirs[j]);
-		current_dir = bot.dir_val;
-
-		bot.pos.x += bot.dir.x;
-		bot.pos.y += bot.dir.y;
-		bot.dir_val = dirs[j];
-		bot.cost += current_cost;
-
-		cost = backtrack(split, hash, bot, end);
-
-		bot.dir_val = current_dir;
-		bot.cost -= current_cost;
-		bot.pos.x -= bot.dir.x;
-		bot.pos.y -= bot.dir.y;
-
-		if (cost != -1 && (cost < min_cost || min_cost == -1))
-			min_cost = cost;
-	}
-
-	split[bot.pos.y][bot.pos.x] = '.';
-
-	if (min_cost == -1)
-		return (-1);
-
-	(void) end;
-	return (min_cost);
+	
 }
 
 void			show_map(char **split, t_pos start, t_pos end)
@@ -164,7 +112,7 @@ long int		resolve_part1(char *input, char **split)
 	(void)	split;
 	(void)	input;
 	
-	long int	**map;
+	long int	***map;
 	int			result;
 	
 	t_bot	bot;
@@ -177,13 +125,30 @@ long int		resolve_part1(char *input, char **split)
 	split[bot.pos.y][bot.pos.x] = '.';
 	split[end.y][end.x] = '.';
 
-	map = ft_calloc(sizeof(long int *), ft_tab_len(split) + 1);
-	for (int i = 0; split[i]; i++)
-		map[i] = ft_calloc(sizeof(long int), ft_strlen(split[i]) + 1);
+	map = ft_calloc(sizeof(long int **), 4);
+	for (int j = 0; j < 4; j++)
+	{
+		map[j] = ft_calloc(sizeof (long int *), ft_tab_len(split) + 1);
+		for (int i = 0; split[i]; i++)
+			map[j][i] = ft_calloc(sizeof(long int), ft_strlen(split[i]) + 1);
+	}
 
 	show_map(split, bot.pos, end);
 
 	result = backtrack(split, map, bot, end);
+
+	// for (int y = 0; y < ft_tab_len(split); y++)
+	// {
+	// 	for (size_t x = 0; x < ft_strlen(split[y]); x++)
+	// 	{
+	// 		if (map[y][x] == 0)
+	// 			printf(" ..  ");
+	// 		else
+	// 			printf("%04ld ", map[y][x]);
+	// 	}
+	// 	printf("\n");
+	// }
+	// printf("\n");
 
 	return (result);
 }
