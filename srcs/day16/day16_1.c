@@ -84,7 +84,7 @@ int				get_new_cost(t_bot bot, t_dir new_dir)
 	return (1001);
 }
 
-int				backtrack(char **split, int **hash, t_bot bot, t_pos end)
+long int		backtrack(char **split, long int **hash, t_bot bot, t_pos end)
 {
 	t_dir	dirs[5];
 	int		cost;
@@ -121,10 +121,7 @@ int				backtrack(char **split, int **hash, t_bot bot, t_pos end)
 		bot.dir_val = dirs[j];
 		bot.cost += current_cost;
 
-		if (hash[bot.pos.y][bot.pos.x] == 0)
-			hash[bot.pos.y][bot.pos.x] = backtrack(split, hash, bot, end);
-		
-		cost = hash[bot.pos.y][bot.pos.x];
+		cost = backtrack(split, hash, bot, end);
 
 		bot.dir_val = current_dir;
 		bot.cost -= current_cost;
@@ -167,8 +164,8 @@ long int		resolve_part1(char *input, char **split)
 	(void)	split;
 	(void)	input;
 	
-	int		**map;
-	int		result;
+	long int	**map;
+	int			result;
 	
 	t_bot	bot;
 	t_pos	end = (t_pos) {ft_strlen(split[0]) - 2, 1};
@@ -180,9 +177,9 @@ long int		resolve_part1(char *input, char **split)
 	split[bot.pos.y][bot.pos.x] = '.';
 	split[end.y][end.x] = '.';
 
-	map = ft_calloc(sizeof(char *), ft_tab_len(split) + 1);
+	map = ft_calloc(sizeof(long int *), ft_tab_len(split) + 1);
 	for (int i = 0; split[i]; i++)
-		map[i] = ft_calloc(sizeof(char), ft_strlen(split[i]) + 1);
+		map[i] = ft_calloc(sizeof(long int), ft_strlen(split[i]) + 1);
 
 	show_map(split, bot.pos, end);
 
