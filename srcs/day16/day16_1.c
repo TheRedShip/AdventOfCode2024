@@ -92,7 +92,6 @@ int				backtrack(char **split, int **hash, t_bot bot, t_pos end)
 	int		current_cost;
 	t_dir	current_dir;
 
-	
 	if (bot.pos.x == end.x && bot.pos.y == end.y)
 		return (bot.cost);
 
@@ -122,7 +121,10 @@ int				backtrack(char **split, int **hash, t_bot bot, t_pos end)
 		bot.dir_val = dirs[j];
 		bot.cost += current_cost;
 
-		cost = backtrack(split, hash, bot, end);
+		if (hash[bot.pos.y][bot.pos.x] == 0)
+			hash[bot.pos.y][bot.pos.x] = backtrack(split, hash, bot, end);
+		
+		cost = hash[bot.pos.y][bot.pos.x];
 
 		bot.dir_val = current_dir;
 		bot.cost -= current_cost;
@@ -178,9 +180,9 @@ long int		resolve_part1(char *input, char **split)
 	split[bot.pos.y][bot.pos.x] = '.';
 	split[end.y][end.x] = '.';
 
-	map = ft_calloc(sizeof(char *), ft_tab_len(split));
+	map = ft_calloc(sizeof(char *), ft_tab_len(split) + 1);
 	for (int i = 0; split[i]; i++)
-		map[i] = ft_calloc(sizeof(char), ft_strlen(split[i]));
+		map[i] = ft_calloc(sizeof(char), ft_strlen(split[i]) + 1);
 
 	show_map(split, bot.pos, end);
 
