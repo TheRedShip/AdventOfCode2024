@@ -86,7 +86,54 @@ int				get_new_cost(t_bot bot, t_dir new_dir)
 
 long int		backtrack(char **split, long int ***hash, t_bot bot, t_pos end)
 {
-	
+	t_dir	dirs[4];
+	int		min_cost = -1;
+
+	if (bot.pos.x == end.x && bot.pos.y == end.y)
+		return (bot.cost);
+
+	ft_memset(dirs, END, sizeof(dirs));
+	set_next_dir(split, bot, dirs);
+
+	split[bot.pos.y][bot.pos.x] = '#';
+
+	if (dirs[0] < 0 || dirs[0] >= 4)
+	{
+		split[bot.pos.y][bot.pos.x] = '.';
+		return (-1);
+	}
+
+	for (int j = 0; j < 4 && dirs[j] >= 0 && dirs[j] < 4; j++)
+	{
+		int current_cost = get_new_cost(bot, dirs[j]);
+
+		t_pos dir = get_dir(dirs[j]);
+		t_pos new_pos = (t_pos) {bot.pos.x + dir.x, bot.pos.y + dir.y};
+
+		t_bot new_bot = (t_bot) {new_pos, dir, dirs[j], bot.cost + current_cost};
+
+		int cost;
+		
+		if (hash[dirs[j]][new_pos.y][new_pos.x] == -1)
+			cost = -1;
+		else if (hash[dirs[j]][new_pos.y][new_pos.x] != 0)
+			cost = hash[dirs[j]][new_pos.y][new_pos.x] + current_cost + bot.cost;
+		else
+			cost = backtrack(split, hash, new_bot, end);
+		
+		if (cost == -1)
+			hash[dirs[j]][new_pos.y][new_pos.x] = -1;
+
+		if (cost != -1 && (cost < min_cost || min_cost == -1))
+		{
+			hash[bot.dir_val][bot.pos.y][bot.pos.x] = current_cost + hash[dirs[j]][new_pos.y][new_pos.x];
+			min_cost = cost;
+		}
+	}
+
+	split[bot.pos.y][bot.pos.x] = '.';
+
+	return (min_cost);
 }
 
 void			show_map(char **split, t_pos start, t_pos end)
@@ -137,18 +184,24 @@ long int		resolve_part1(char *input, char **split)
 
 	result = backtrack(split, map, bot, end);
 
-	// for (int y = 0; y < ft_tab_len(split); y++)
-	// {
-	// 	for (size_t x = 0; x < ft_strlen(split[y]); x++)
-	// 	{
-	// 		if (map[y][x] == 0)
-	// 			printf(" ..  ");
-	// 		else
-	// 			printf("%04ld ", map[y][x]);
-	// 	}
-	// 	printf("\n");
-	// }
-	// printf("\n");
+	for (int y = 0; y < ft_tab_len(split); y++)
+	{
+		for (size_t x = 0; x < ft_strlen(split[y]); x++)
+		{
+			long int	min = -2;
+			for (int j = 0; j < 4; j++)
+			{
+				if ((map[j][y][x] > 0 && map[j][y][x] < min) || min <= 0)
+					min = map[j][y][x];
+			}
+			if (min == 0)
+				printf("  ..   ");
+			else
+				printf("%06ld ", min);
+		}
+		printf("\n");
+	}
+	printf("\n\n");
 
 	return (result);
 }
